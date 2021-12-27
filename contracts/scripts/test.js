@@ -7,14 +7,11 @@ const path = require("path");
 const wethAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
 const wethAbi = require("./abi/IWETH.json");
 
-const OUT_DIR = path.join(__dirname, "..", "out");
+let artifact = JSON.parse(fs.readFileSync("../build/Sandwich.json"))
 
-const abi = fs.readFileSync(path.join(OUT_DIR, "sandwich.abi"), {
-  encoding: "ascii",
-});
-const bytecode = fs.readFileSync(path.join(OUT_DIR, "sandwich.bytecode"), {
-  encoding: "ascii",
-});
+const bytecode = artifact.bytecode 
+
+const abi = artifact.abi
 
 const provider = new ethers.providers.JsonRpcProvider();
 
@@ -64,11 +61,6 @@ const main = async () => {
 
   console.log("tx2Recp", tx2Recp.logs);
 
-  // const code = await provider.getCode(contractAddress)
-
-  // console.log('bytecode', bytecode)
-  // console.log('data', data)
-  // console.log('code', code)
 };
 
 main();
