@@ -7,12 +7,7 @@ const path = require("path");
 const wethAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
 const wethAbi = require("./abi/IWETH.json");
 
-fs.readFile('../build/Sandwhich.json', 'utf8', (err, data) => {
-
-  // parse JSON string to JSON object
-  const artifact = JSON.parse(data);
-
-});
+let artifact = JSON.parse(fs.readFileSync("../build/Sandwich.json"))
 
 const bytecode = artifact.bytecode 
 
